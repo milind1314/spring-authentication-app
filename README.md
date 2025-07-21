@@ -78,7 +78,9 @@ server.servlet.context-path=/auth-api
 | POST   | `/auth-api/reset-password` | Reset password (WIP)  | ❌             |
 
 
-🧰 How to Run
+---
+
+## 🧰 How to Run
 !. Clone the repository
 
 git clone https://github.com/your-username/authenticationapp.git
@@ -90,18 +92,27 @@ CREATE DATABASE authentication_app;
 3. Build & Run
 mvn spring-boot:run
 
-🔐 Authorization
+
+---
+
+## 🔐 Authorization
 Pass JWT in the Authorization header:
 Authorization: Bearer <token>
 
 Or as a cookie named jwt
 
-📌 Notes
+
+
+---
+
+## 📌 Notes
 JWT token is valid for 10 hours.
 
 Spring Security is configured to allow public access to /login, /register, /reset-password, and /logout.
 
-📄 License
+---
+
+## 📄 License
 This project is for learning purposes. You are free to modify and use it in your own projects.
 
 
