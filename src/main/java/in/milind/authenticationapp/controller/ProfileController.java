@@ -3,9 +3,11 @@ package in.milind.authenticationapp.controller;
 import in.milind.authenticationapp.io.ProfileRequest;
 import in.milind.authenticationapp.io.ProfileResponse;
 import in.milind.authenticationapp.service.AuthenticationServiceImpl;
+import in.milind.authenticationapp.service.EmailService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,19 +16,23 @@ public class ProfileController {
 
     private final AuthenticationServiceImpl authenticationService;
 
+    private final EmailService emailService;
+
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public ProfileResponse register(@Valid @RequestBody ProfileRequest request)
     {
         ProfileResponse response = authenticationService.createProfile(request);
-        //TODO:send welcome Email
+
+        emailService.sendWelcomeEmail(response.getEmail(), response.getName());
 
         return response;
     }
 
-
-    @GetMapping("/test")
-    public String test(){
-       return  "Auth is working";
+@GetMapping("/profile")
+    public ProfileResponse getProfile(@CurrentSecurityContext(expression = "authentication?.name") String email){
+        return authenticationService.getProfile(email);
     }
+
+
 }
