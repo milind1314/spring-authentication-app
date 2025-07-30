@@ -1,32 +1,39 @@
 
-# Authentication App (Spring Boot + JWT)
+# 🔐 Full-Stack Authentication System
 
-This is a simple Spring Boot application that implements JWT-based authentication and authorization. It uses MySQL as the database and includes functionality for registration, login, and protected routes.
-
----
-
-## 🔧 Tech Stack
-
-- **Java 17+**
-- **Spring Boot**
-- **Spring Security**
-- **JWT (io.jsonwebtoken)**
-- **MySQL**
-- **Maven**
-- **Lombok**
+A secure and responsive full-stack authentication app built using **React.js** for the frontend and **Spring Boot** for the backend. Features include email-based OTP verification, password reset, JWT-based login, and protected routes.
 
 ---
 
 ## 🚀 Features
 
-- ✅ User registration
-- ✅ User login with JWT generation
-- ✅ JWT validation via filters
-- ✅ Protected API endpoints
-- ✅ Stateless authentication
-- ✅ Token in `Authorization` header or Cookie support
-- ✅ Email extraction from JWT
-- ✅ Context path configurable (`/auth-api`)
+- ✅ User Login with JWT Authentication
+- 📩 Email-based OTP verification
+- 🔒 Password Reset functionality
+- 🔐 Secure cookies with `withCredentials`
+- 📦 React Context API for global state management
+- 💅 Bootstrap-styled responsive UI
+- 🌐 Axios for API calls with proper error handling
+- 🛡️ Backend built with Spring Boot and MongoDB
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React.js
+- React Router DOM
+- Axios
+- React Toastify
+- Bootstrap 5
+- Context API
+
+### Backend
+- Spring Boot
+- Spring Security
+- MongoDB
+- Java Mail Sender (for OTP)
+- JWT (JSON Web Tokens)
 
 ---
 
@@ -34,124 +41,91 @@ This is a simple Spring Boot application that implements JWT-based authenticatio
 
 ```
 
-src/main/java/in/milind/authenticationapp/
-│
-├── controller/              # REST Controllers
-│   └── ProfileController.java
-│
-├── service/                 # Business logic
-│   └── AuthenticationServiceImpl.java
-│
-├── filter/                  # JWT Filter
-│   └── JwtRequestFilter.java
-│
-├── util/                    # JWT Utility
-│   └── JwtUtil.java
-│
-├── io/                      # DTOs (Request/Response)
-│   ├── ProfileRequest.java
-│   └── ProfileResponse.java
-│
-└── config/                  # Spring Security Configuration
-└── SecurityConfig.java
+frontend/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── context/
+│   ├── pages/
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.jsx
+│   └── util/constants.js
+backend/
+├── src/main/java/
+│   └── in/milind/authenticationapp/
+│       ├── controller/
+│       ├── config/
+│       ├── filter/
+│       ├── model/
+│       ├── repo/
+│       ├── service/
+│       └── util/
+└── application.properties
 
 ````
 
 ---
 
-## ⚙️ Configuration
 
-Update the following in `application.properties`:
+## 🔧 Setup Instructions
 
-```properties
-spring.application.name=authenticationapp
-spring.datasource.url=jdbc:mysql:///authentication_app
-spring.datasource.username=root
-spring.datasource.password=YOUR_PASSWORD
-spring.jpa.hibernate.ddl-auto=update
+### 1. Clone the Repository
 
-jwt.secret.key=your-secret-key
-
-server.servlet.context-path=/auth-api
+```bash
+git clone https://github.com/your-username/fullstack-auth-app.git
+cd fullstack-auth-app
 ````
 
----
-
-## 📡 API Endpoints
-
-| Method | Endpoint                   | Description           | Auth Required |
-| ------ | -------------------------- | --------------------- | ------------- |
-| POST   | `/auth-api/register`       | Register a new user   | ❌             |
-| POST   | `/auth-api/login`          | Login & get JWT       | ❌             |
-| GET    | `/auth-api/test`           | Test secured endpoint | ✅             |
-| POST   | `/auth-api/reset-password` | Reset password (WIP)  | ❌             |
-
----
-
-## 🧰 How to Run
-
-1. **Clone the repository**
+### 2. Setup Backend
 
 ```bash
-git clone https://github.com/your-username/authenticationapp.git
-cd authenticationapp
-```
-
-2. **Start MySQL** and create a database:
-
-```sql
-CREATE DATABASE authentication_app;
-```
-
-3. **Build & Run the app**
-
-```bash
+cd backend
+# Configure your MongoDB and mail credentials in application.properties
 mvn spring-boot:run
 ```
 
-App will be available at: `http://localhost:8080/auth-api`
+### 3. Setup Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
 ---
 
-## 🔐 Authorization
+## ✅ Environment Variables
 
-Pass JWT token in:
+Update `frontend/src/util/constants.js`:
 
-* **Header**:
+```js
+export const AppConstants = {
+  BACKEND_URL: 'http://localhost:8080/auth-api',
+}
+```
 
-  ```
-  Authorization: Bearer <token>
-  ```
-* **Or Cookie**:
+Update backend `application.properties`:
 
-  ```
-  jwt=<token>
-  ```
-
----
-
-## 📌 Notes
-
-* JWT token is valid for 10 hours.
-* Spring Security is configured to allow unauthenticated access to:
-
-  * `/login`
-  * `/register`
-  * `/reset-password`
-  * `/logout`
+```properties
+spring.data.mongodb.uri=your_mongo_uri
+spring.mail.username=your_email
+spring.mail.password=your_password
+jwt.secret=your_jwt_secret
+```
 
 ---
 
-## 📄 License
+## 🙌 Acknowledgements
 
-This project is for educational purposes. You're free to modify and use it in your own apps.
+* React Team
+* Spring Boot & Spring Security Docs
+* Bootstrap 5
+* Toastify
+
+```
 
 ---
 
-Let me know if you'd like:
-
-* 📬 A **Postman collection**
-* 🔄 **Refresh token** support
-* 📧 **Email notifications** (welcome/reset)
-
+Would you like me to generate the `LICENSE` file too or help with deployment steps (e.g., on Vercel and Render)?
 ```
