@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Verification</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f6f8; padding: 20px;">
+<div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <h2 style="color: #6a5af9;">Verify Your Email Address</h2>
+    <p>Hello <strong th:text="${email}">user@example.com</strong>,</p>
+    <p>Thank you for signing up! Please use the OTP below to verify your email address:</p>
+    <div style="font-size: 24px; font-weight: bold; background-color: #f1f1f1; padding: 15px 25px; text-align: center; border-radius: 5px; margin: 20px 0;">
+        <span th:text="${otp}">123456</span>
+    </div>
+    <p>If you didn't initiate this request, please ignore this email.</p>
+    <br>
+    <p style="font-size: 14px; color: #888;">Regards,<br>AuthCity Team</p>
+</div>
+</body>
+</html>
