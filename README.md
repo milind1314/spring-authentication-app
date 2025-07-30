@@ -123,9 +123,3 @@ jwt.secret=your_jwt_secret
 * Bootstrap 5
 * Toastify
 
-```
-
----
-
-Would you like me to generate the `LICENSE` file too or help with deployment steps (e.g., on Vercel and Render)?
-```
